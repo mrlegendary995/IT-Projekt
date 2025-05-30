@@ -1,0 +1,144 @@
+# Script: overvaagning.ps1
+
+# === Filplaceringer ===
+$configPath = "C:\IT-Projekt\config\config.json"
+$statePath  = "C:\IT-Projekt\config\state.json"
+$logPath    = "C:\IT-Projekt\logs\overvaagning_log.csv"
+
+# === E-mail indstillinger (øverst for bedre overblik) ===
+$gmailUser     = "latifcaliskan0701@gmail.com"
+$gmailPass     = ConvertTo-SecureString "borw fklh mhgv bcqu" -AsPlainText -Force
+$cred          = New-Object System.Management.Automation.PSCredential ($gmailUser, $gmailPass)
+$smtpServer    = "smtp.gmail.com"
+$smtpPort      = 587
+$smtpUseSsl    = $true
+
+# === Funktion: Indlæs JSON fra fil ===
+function Load-JsonFile {
+    param ($path)
+    if (Test-Path $path) {
+        return Get-Content $path | ConvertFrom-Json
+    } else {
+        return @()
+    }
+}
+
+# === Funktion: Log resultat ===
+function Log-Result {
+    param ($task, $status, $details, $error)
+    $line = "$($task.id),$((Get-Date).ToString("s")),$($task.type),$($task.address),$status,""$details"",""$error"""
+    Add-Content -Path $logPath -Value $line
+}
+
+# === Funktion: Send fejlmail via Gmail ===
+function Send-Fejlmail {
+    param ($task, $details, $error)
+
+    $body = @"
+Opgave: $($task.id)
+Type: $($task.type)
+Adresse: $($task.address)
+Tidspunkt: $(Get-Date)
+Resultat: $details
+Fejl: $error
+"@
+
+    try {
+        Send-MailMessage -To $task.alertEmail -From $gmailUser `
+            -Subject "Fejl i overvaagningsopgave: $($task.id)" `
+            -Body $body `
+            -SmtpServer $smtpServer `
+            -Port $smtpPort `
+            -UseSsl:$smtpUseSsl `
+            -Credential $cred
+        Write-Host "✅ E-mail sendt til $($task.alertEmail)"
+    } catch {
+        Write-Host "❌ FEJL ved afsendelse af e-mail: $($_.Exception.Message)"
+    }
+}
+
+# === Funktion: Ping-test ===
+function Run-PingTest {
+    param ($task)
+    $address = $task.address
+    $successCount = 0
+
+    for ($i = 1; $i -le 10; $i++) {
+        if (Test-Connection -ComputerName $address -Count 1 -Quiet -ErrorAction SilentlyContinue) {
+            $successCount++
+        }
+    }
+
+    $summary = "$successCount/10 OK"
+    $status = if ($successCount -eq 10) { "success" } else { "fail" }
+
+    Write-Host "Ping-resultat for ${address}: $summary"
+    Log-Result -task $task -status $status -details $summary -error ""
+
+    if ($status -eq "fail") {
+        Send-Fejlmail -task $task -details $summary -error "Mangler svar paa ping"
+    }
+}
+
+# === Funktion: HTTP-test ===
+function Run-HttpTest {
+    param ($task)
+    $address = $task.address
+    $protocol = if ($address.StartsWith("https")) { "HTTPS" } else { "HTTP" }
+
+    try {
+        $response = Invoke-WebRequest -Uri $address -UseBasicParsing -TimeoutSec 5
+        $statusCode = $response.StatusCode
+
+        if ($statusCode -ge 200 -and $statusCode -lt 300) {
+            Write-Host "$protocol resultat for ${address}: $statusCode OK"
+            Log-Result -task $task -status "success" -details "$statusCode OK" -error ""
+        } else {
+            Write-Host "$protocol fejl for ${address}: $statusCode"
+            Log-Result -task $task -status "fail" -details "$statusCode fejl" -error "HTTP-status uden for 200-299"
+            Send-Fejlmail -task $task -details "$statusCode fejl" -error "HTTP-status uden for 200-299"
+        }
+
+    } catch {
+        Write-Host "$protocol fejl for ${address}: $_"
+        Log-Result -task $task -status "fail" -details "Fejl ved forespoergsel" -error $_.Exception.Message
+        Send-Fejlmail -task $task -details "Fejl ved forespoergsel" -error $_.Exception.Message
+    }
+}
+
+# === Indlæs konfiguration og state ===
+$config = Load-JsonFile $configPath
+$state = @{}
+
+if (Test-Path $statePath) {
+    $rawState = Get-Content $statePath -Raw | ConvertFrom-Json
+    foreach ($entry in $rawState.PSObject.Properties) {
+        $state[$entry.Name] = $entry.Value
+    }
+}
+
+# === Aktuel tid ===
+$now = Get-Date
+
+# === Gennemgå alle opgaver ===
+foreach ($task in $config) {
+    $taskId = $task.id
+    $lastRun = if ($state[$taskId]) { Get-Date $state[$taskId] } else { [datetime]::MinValue }
+    $minutesSinceLast = ($now - $lastRun).TotalMinutes
+
+    if ($minutesSinceLast -ge $task.intervalMinutes) {
+        Write-Host "`nKoerer opgave: $($task.id)"
+
+        if ($task.type -eq "ping") {
+            Run-PingTest -task $task
+        } elseif ($task.type -eq "http" -or $task.type -eq "https") {
+            Run-HttpTest -task $task
+        }
+
+        # Opdater sidste køretid
+        $state[$taskId] = $now.ToString("o")
+    }
+}
+
+# === Gem ny state ===
+$state | ConvertTo-Json | Set-Content $statePath

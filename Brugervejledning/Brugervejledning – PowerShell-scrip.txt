@@ -1,0 +1,56 @@
+Brugervejledning – PowerShell-script (overvaagning.ps1)
+Dette script bruges til at overvåge netværk og webtjenester automatisk eller manuelt. Det læser opgaver fra en konfigurationsfil og logger resultater til fil – med e-mailnotifikation ved fejl.
+
+1. Sådan køres scriptet manuelt
+Åbn PowerShell som administrator
+
+Naviger til mappen med scriptet:
+
+powershell
+Kopiér
+Rediger
+cd C:\IT-Projekt\script\
+Kør scriptet:
+
+powershell
+Kopiér
+Rediger
+powershell -ExecutionPolicy Bypass -File .\overvaagning.ps1
+Resultatet vises i konsollen og logges automatisk til CSV-filen.
+
+2. Sådan fungerer scriptet
+Læser opgaver fra config.json
+
+Tjekker type (ping eller http/https)
+
+Udfører test og logger resultat i overvaagning_log.csv
+
+Sender fejl-e-mail til adresse i opgaven, hvis testen fejler
+
+Husker seneste køretid i state.json
+
+3. Konfigurationsfiler
+config.json: Indeholder en liste over opgaver, f.eks.:
+
+json
+Kopiér
+Rediger
+[
+  {
+    "id": "web1",
+    "type": "https",
+    "address": "https://eksempel.dk",
+    "intervalMinutes": 5,
+    "alertEmail": "it@firma.dk"
+  }
+]
+state.json: Bruges af scriptet til at huske, hvornår opgaver sidst blev kørt.
+
+4. Logfil og placeringer
+Log gemmes i:
+C:\IT-Projekt\logs\overvaagning_log.csv
+
+Loggen viser ID, tidspunkt, type, adresse, status og evt. fejl
+
+5. Automatisk kørsel
+Scriptet kan køres automatisk via Task Scheduler, f.eks. hvert 5. minut. Se separat vejledning for opsætning.

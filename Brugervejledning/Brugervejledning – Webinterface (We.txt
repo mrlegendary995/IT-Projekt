@@ -1,0 +1,42 @@
+Brugervejledning – Webinterface (Webapp)
+Denne vejledning beskriver, hvordan du bruger den webbaserede brugerflade til at køre overvågningstests og håndtere logfiler direkte fra en browser.
+
+1. Start webserveren
+Åbn mappen: C:\IT-Projekt\web\
+
+Højreklik og vælg “Åbn i terminal” eller “Åbn i PowerShell”
+
+Skriv og kør:
+
+bash
+Kopiér
+Rediger
+node server.js
+Du vil se: ✅ Webapp running at http://localhost:3000
+
+2. Åbn webappen i browser
+Åbn din browser og gå til:
+http://localhost:3000
+
+3. Funktioner i webinterfacet
+Klik på “Kør overvågningstest”
+→ Testresultat vises med tidspunkt og status
+
+Klik på “Indlæs log”
+→ Viser hele logfilens indhold (CSV)
+
+Klik på “Gem log”
+→ Gemmer ændringer, du har lavet i loggen
+
+Du kan redigere eller kopiere logindholdet direkte
+
+4. Fejlhåndtering
+Hvis knapperne ikke virker:
+
+Sørg for at server.js kører
+
+Kontrollér at logfil og script er til stede i de korrekte mapper
+
+Webappen kræver, at Node.js er installeret
+
+Webappen bruger server.js og index.html, og interagerer med PowerShell-scriptet og logfilen. Den kan nemt udvides med adgangskontrol og køres på en ekstern server.

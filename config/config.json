@@ -1,0 +1,65 @@
+[
+  {
+    "id": "ping-studerendeonline",
+    "type": "ping",
+    "address": "188.114.97.0",
+    "intervalMinutes": 5,
+    "alertEmail": "latifcaliskan0701@gmail.com"
+  },
+  {
+    "id": "https-jobbank",
+    "type": "https",
+    "address": "https://jobbank.dk/",
+    "intervalMinutes": 10,
+    "alertEmail": "latifcaliskan0701@gmail.com"
+  },
+  {
+    "id": "https-nyuddannet",
+    "type": "https",
+    "address": "https://nyuddannet.dk/",
+    "intervalMinutes": 10,
+    "alertEmail": "latifcaliskan0701@gmail.com"
+  },
+  {
+    "id": "https-karriere",
+    "type": "https",
+    "address": "https://karrierevejviser.dk/",
+    "intervalMinutes": 10,
+    "alertEmail": "latifcaliskan0701@gmail.com"
+  },
+  {
+    "id": "https-praktik",
+    "type": "https",
+    "address": "https://praktik.dk/",
+    "intervalMinutes": 10,
+    "alertEmail": "latifcaliskan0701@gmail.com"
+  },
+  {
+    "id": "https-jobmesse",
+    "type": "https",
+    "address": "https://jobmesse.dk/",
+    "intervalMinutes": 10,
+    "alertEmail": "latifcaliskan0701@gmail.com"
+  },
+  {
+    "id": "https-sosu",
+    "type": "https",
+    "address": "https://sosu.nu/",
+    "intervalMinutes": 10,
+    "alertEmail": "latifcaliskan0701@gmail.com"
+  },
+  {
+    "id": "https-frivilligjob",
+    "type": "https",
+    "address": "https://frivilligjob.dk/",
+    "intervalMinutes": 10,
+    "alertEmail": "latifcaliskan0701@gmail.com"
+  },
+  {
+    "id": "https-moveon",
+    "type": "https",
+    "address": "https://moveon.dk/career/",
+    "intervalMinutes": 10,
+    "alertEmail": "latifcaliskan0701@gmail.com"
+  }
+]

@@ -1,0 +1,36 @@
+1. Start programmet
+Gå til mappen: C:\IT-Projekt\script\
+
+Dobbeltklik på filen start_gui.bat
+(Alternativt: højreklik på gui.ps1 og vælg “Kør med PowerShell”)
+
+2. Vælg overvågningsopgave
+Når programmet åbner, vises en liste over opgaver (fra config.json)
+
+Klik på en opgave (f.eks. en IP-adresse eller webadresse)
+
+3. Kør test
+Klik på knappen “▶ Start Test”
+
+Resultatet vises med grøn (succes) eller rød/orange (fejl)
+
+Du kan se detaljer i tekstfeltet under resultatgruppen
+
+4. Rediger eller se log
+Klik på “📝 Rediger Log” for at åbne loggen
+
+Du kan:
+
+Søge i loggen
+
+Gemme ændringer
+
+Rydde loggen (kun overskrift bevares)
+
+Eksportere en kopi
+
+5. Afslut programmet
+Luk vinduet som et almindeligt Windows-program
+
+Logfilen gemmes automatisk i C:\IT-Projekt\logs\overvaagning_log.csv
+Konfigurationen styres via C:\IT-Projekt\config\config.json

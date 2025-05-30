@@ -1,0 +1,37 @@
+Brugervejledning – Automatisk kørsel med Task Scheduler
+Denne vejledning forklarer, hvordan du opsætter Windows Task Scheduler til at køre overvågningsscriptet automatisk – f.eks. hvert 5. minut.
+
+1. Åbn Task Scheduler
+Tryk på Windows-tasten
+
+Søg efter “Opgavestyring” (eller “Task Scheduler”)
+
+Klik på “Opret grundlæggende opgave…”
+
+2. Navngiv opgaven
+Giv opgaven et navn, f.eks. Overvaagning_Auto
+
+Klik Næste
+
+3. Vælg hvornår den skal køres
+Vælg f.eks. “Dagligt” → Næste
+
+Angiv starttidspunkt (f.eks. kl. 00:00)
+
+4. Vælg handling
+Vælg “Start et program” → Næste
+
+5. Angiv script og parametre
+I feltet Program/script, skriv:
+
+nginx
+Kopiér
+Rediger
+powershell
+I feltet Tilføj argumenter (valgfrit), skriv:
+
+arduino
+Kopiér
+Rediger
+-ExecutionPolicy Bypass -File "C:\IT-Projekt\script\overvaagning.ps1"
+Klik Næste → Udfør

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <title>Overvågningslog</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    h1, h2 {
+      margin-bottom: 10px;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border: 1px solid #ccc;
+      white-space: pre-wrap;
+    }
+    textarea {
+      width: 100%;
+      height: 300px;
+      font-family: monospace;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 5px 5px 20px 0;
+      cursor: pointer;
+    }
+    #sidstKoert {
+      margin-top: -15px;
+      margin-bottom: 25px;
+      color: #666;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <h1>Overvågningslog og test</h1>
+
+  <button onclick="koerTest()">Kør overvågningstest</button>
+  <p id="sidstKoert">Senest kørt: ...</p>
+  <pre id="resultat">Klik på knappen for at starte testen...</pre>
+
+  <hr>
+  <h2>Rediger logfil</h2>
+
+  <button onclick="loadLog()">Indlæs log</button>
+  <button onclick="saveLog()">Gem log</button>
+  <br><br>
+
+  <textarea id="logEditor" placeholder="Logfilen vises her..."></textarea>
+
+  <script>
+    function koerTest() {
+      fetch('/koertest')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('resultat').textContent = data;
+          opdaterTidspunkt(); // Vis ny tid
+        })
+        .catch(err => {
+          document.getElementById('resultat').textContent = '❌ Fejl ved kørsel af test.';
+          console.error(err);
+        });
+    }
+
+    function loadLog() {
+      fetch('/log')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('logEditor').value = data;
+        })
+        .catch(err => {
+          alert('❌ Kunne ikke indlæse logfil.');
+          console.error(err);
+        });
+    }
+
+    function saveLog() {
+      const content = document.getElementById('logEditor').value;
+      fetch('/save-log', {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: content
+      })
+      .then(res => res.text())
+      .then(msg => {
+        alert(msg);
+      })
+      .catch(err => {
+        alert('❌ Kunne ikke gemme logfil.');
+        console.error(err);
+      });
+    }
+
+    function opdaterTidspunkt() {
+      fetch('/last-run')
+        .then(res => res.text())
+        .then(data => {
+          const felt = document.getElementById('sidstKoert');
+          const tid = new Date(data);
+          if (!isNaN(tid)) {
+            felt.textContent = `Senest kørt: ${tid.toLocaleString()}`;
+          } else {
+            felt.textContent = 'Senest kørt: (ukendt)';
+          }
+        })
+        .catch(() => {
+          document.getElementById('sidstKoert').textContent = 'Senest kørt: (fejl ved hentning)';
+        });
+    }
+
+    // Hent tidspunkt ved indlæsning
+    window.onload = opdaterTidspunkt;
+  </script>
+</body>
+</html>
