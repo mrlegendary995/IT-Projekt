@@ -1,25 +1,37 @@
-# IT-Projekt
+# Overvågningsværktøj med PowerShell, GUI og Webinterface
 
-Dette repository indeholder mit IT-projekt, som er en webapplikation udviklet som en del af mit studiearbejde. Projektet demonstrerer brugen af Node.js, HTML og JavaScript til at opbygge en simpel webserver og frontend.
+## 📌 Projektbeskrivelse
 
-## 🧰 Teknologier anvendt
+Dette projekt er et overvågningsværktøj udviklet i PowerShell, der automatisk tester netværksforbindelser og webtjenester (via ping og HTTP/HTTPS). Det logger resultater i en CSV-fil og sender notifikationer via e-mail ved fejl. Systemet kan bruges både automatisk og manuelt – via en grafisk brugerflade (Windows Forms GUI) og et webbaseret interface (Node.js/Express).
 
-- **Node.js**: Server-side runtime-miljø
-- **HTML/CSS/JavaScript**: Frontend-udvikling
-- **Batch-script**: Automatisk opstart af webserver (`start_webserver.bat`)
+---
 
-## 📁 Projektstruktur
+## ⚙️ Funktioner
 
-- `public/`: Indeholder statiske filer som HTML, CSS og billeder
-- `script/`: Indeholder JavaScript-filer til frontend-funktionalitet
-- `config/`: Konfigurationsfiler til projektet
-- `logs/`: Logfiler genereret af applikationen
-- `rapport/`: Dokumentation og rapporter relateret til projektet
-- `Brugervejledning/`: Vejledning til brug af applikationen
-- `start_webserver.bat`: Batchfil til at starte webserveren
+- 🔁 Automatisk overvågning via Windows Task Scheduler
+- 🖥️ GUI bygget med Windows Forms (PowerShell)
+- 🌐 Webinterface med Node.js + Express
+- 📤 E-mailnotifikation ved fejl (SMTP)
+- 📊 Logging i CSV-format
+- 🔧 JSON-konfigurationsfil
+- 📁 Mulighed for at søge, redigere og eksportere logfil
+- 🔒 Grundlæggende sikkerhed og adgangskontrol
 
-## 🚀 Sådan kommer du i gang
+---
 
-1. **Klon repository**:
-   ```bash
-   git clone https://github.com/mrlegendary995/IT-Projekt.git
+## 🧪 Teknologier
+
+- PowerShell (script og GUI)
+- Node.js / Express (REST API)
+- HTML, CSS, JavaScript (frontend)
+- JSON og CSV (datahåndtering)
+- SMTP (e-mail)
+- Windows Task Scheduler (automatisk kørsel)
+
+---
+
+## 🚀 Kom godt i gang
+
+### 1. Klon projektet
+```bash
+git clone https://github.com/din-bruger/overvaagning.git
