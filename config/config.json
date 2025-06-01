@@ -1,65 +1,65 @@
 [
   {
-    "id": "ping-studerendeonline",
+    "id": "",
     "type": "ping",
-    "address": "188.114.97.0",
+    "address": "",
     "intervalMinutes": 5,
-    "alertEmail": "latifcaliskan0701@gmail.com"
+    "alertEmail": ""
   },
   {
-    "id": "https-jobbank",
+    "id": "",
     "type": "https",
-    "address": "https://jobbank.dk/",
+    "address": "",
     "intervalMinutes": 10,
-    "alertEmail": "latifcaliskan0701@gmail.com"
+    "alertEmail": ""
   },
   {
-    "id": "https-nyuddannet",
+    "id": "",
     "type": "https",
-    "address": "https://nyuddannet.dk/",
+    "address": "",
     "intervalMinutes": 10,
-    "alertEmail": "latifcaliskan0701@gmail.com"
+    "alertEmail": ""
   },
   {
-    "id": "https-karriere",
+    "id": "",
     "type": "https",
-    "address": "https://karrierevejviser.dk/",
+    "address": "",
     "intervalMinutes": 10,
-    "alertEmail": "latifcaliskan0701@gmail.com"
+    "alertEmail": ""
   },
   {
-    "id": "https-praktik",
+    "id": "",
     "type": "https",
-    "address": "https://praktik.dk/",
+    "address": "",
     "intervalMinutes": 10,
-    "alertEmail": "latifcaliskan0701@gmail.com"
+    "alertEmail": ""
   },
   {
-    "id": "https-jobmesse",
+    "id": "",
     "type": "https",
-    "address": "https://jobmesse.dk/",
+    "address": "",
     "intervalMinutes": 10,
-    "alertEmail": "latifcaliskan0701@gmail.com"
+    "alertEmail": "m"
   },
   {
-    "id": "https-sosu",
+    "id": "",
     "type": "https",
-    "address": "https://sosu.nu/",
+    "address": "",
     "intervalMinutes": 10,
-    "alertEmail": "latifcaliskan0701@gmail.com"
+    "alertEmail": ""
   },
   {
-    "id": "https-frivilligjob",
+    "id": "",
     "type": "https",
-    "address": "https://frivilligjob.dk/",
+    "address": "",
     "intervalMinutes": 10,
-    "alertEmail": "latifcaliskan0701@gmail.com"
+    "alertEmail": ""
   },
   {
-    "id": "https-moveon",
+    "id": "",
     "type": "https",
-    "address": "https://moveon.dk/career/",
+    "address": "",
     "intervalMinutes": 10,
-    "alertEmail": "latifcaliskan0701@gmail.com"
+    "alertEmail": ""
   }
 ]
