@@ -8,7 +8,7 @@ const app = express();
 const port = 3000;
 
 const logFilePath = path.resolve(__dirname, '../logs/overvaagning_log.csv');
-const lastRunPath = path.resolve(__dirname, 'last_run.txt'); // 🔹 ny fil til tidspunkt
+const lastRunPath = path.resolve(__dirname, 'last_run.txt'); //  ny fil til tidspunkt
 
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(bodyParser.text());
@@ -22,10 +22,10 @@ app.get('/log', (req, res) => {
 app.post('/save-log', (req, res) => {
   fs.writeFile(logFilePath, req.body, 'utf8', (err) => {
     if (err) {
-      console.error('❌ Error saving log file:', err);
-      return res.status(500).send('❌ Could not save log file.');
+      console.error(' Error saving log file:', err);
+      return res.status(500).send(' Could not save log file.');
     }
-    res.send('✅ Log file saved successfully!');
+    res.send(' Log file saved successfully!');
   });
 });
 
@@ -35,23 +35,23 @@ app.get('/koertest', (req, res) => {
 
   exec(`powershell -ExecutionPolicy Bypass -File "${scriptPath}"`, (error, stdout, stderr) => {
     if (error) {
-      console.error(`❌ PowerShell error: ${error.message}`);
-      return res.status(500).send(`❌ PowerShell error: ${error.message}`);
+      console.error(` PowerShell error: ${error.message}`);
+      return res.status(500).send(` PowerShell error: ${error.message}`);
     }
     if (stderr) {
-      console.error(`⚠️ PowerShell stderr: ${stderr}`);
-      return res.status(500).send(`⚠️ PowerShell stderr: ${stderr}`);
+      console.error(` PowerShell stderr: ${stderr}`);
+      return res.status(500).send(` PowerShell stderr: ${stderr}`);
     }
 
-    // 🔹 Gem tidspunkt for seneste kørsel
+    //  Gem tidspunkt for seneste kørsel
     const now = new Date().toISOString();
     fs.writeFileSync(lastRunPath, now, 'utf8');
 
-    res.send(`✅ PowerShell output:\n\n${stdout}`);
+    res.send(` PowerShell output:\n\n${stdout}`);
   });
 });
 
-// 🔹 NYT: Send tidspunkt for sidste kørsel
+//  NYT: Send tidspunkt for sidste kørsel
 app.get('/last-run', (req, res) => {
   if (fs.existsSync(lastRunPath)) {
     const timestamp = fs.readFileSync(lastRunPath, 'utf8');
@@ -63,5 +63,5 @@ app.get('/last-run', (req, res) => {
 
 // Start server
 app.listen(port, () => {
-  console.log(`✅ Webapp running at http://localhost:${port}`);
+  console.log(` Webapp running at http://localhost:${port}`);
 });
