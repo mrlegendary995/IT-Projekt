@@ -7,14 +7,12 @@ Dette script bruges til at overvåge netværk og webtjenester automatisk eller m
 Naviger til mappen med scriptet:
 
 powershell
-Kopiér
-Rediger
+
 cd C:\IT-Projekt\script\
 Kør scriptet:
 
 powershell
-Kopiér
-Rediger
+
 powershell -ExecutionPolicy Bypass -File .\overvaagning.ps1
 Resultatet vises i konsollen og logges automatisk til CSV-filen.
 
@@ -33,8 +31,7 @@ Husker seneste køretid i state.json
 config.json: Indeholder en liste over opgaver, f.eks.:
 
 json
-Kopiér
-Rediger
+
 [
   {
     "id": "web1",
