@@ -62,7 +62,7 @@
           opdaterTidspunkt(); // Vis ny tid
         })
         .catch(err => {
-          document.getElementById('resultat').textContent = '❌ Fejl ved kørsel af test.';
+          document.getElementById('resultat').textContent = ' Fejl ved kørsel af test.';
           console.error(err);
         });
     }
@@ -74,7 +74,7 @@
           document.getElementById('logEditor').value = data;
         })
         .catch(err => {
-          alert('❌ Kunne ikke indlæse logfil.');
+          alert(' Kunne ikke indlæse logfil.');
           console.error(err);
         });
     }
@@ -91,7 +91,7 @@
         alert(msg);
       })
       .catch(err => {
-        alert('❌ Kunne ikke gemme logfil.');
+        alert(' Kunne ikke gemme logfil.');
         console.error(err);
       });
     }
