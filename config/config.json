@@ -1,15 +1,15 @@
 [
   {
-    "id": "",
+    "id": "indsæt id",
     "type": "ping",
-    "address": "",
+    "address": "indsæt ip",
     "intervalMinutes": 5,
     "alertEmail": ""
   },
   {
-    "id": "",
+    "id": "indsæt id",
     "type": "https",
-    "address": "",
+    "address": "indsæt url adresse",
     "intervalMinutes": 10,
     "alertEmail": ""
   },
