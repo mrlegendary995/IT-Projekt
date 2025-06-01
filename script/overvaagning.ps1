@@ -6,8 +6,8 @@ $statePath  = "C:\IT-Projekt\config\state.json"
 $logPath    = "C:\IT-Projekt\logs\overvaagning_log.csv"
 
 # === Email settings ===
-$gmailUser     = "latifcaliskan0701@gmail.com"
-$gmailPass     = ConvertTo-SecureString "borw fklh mhgv bcqu" -AsPlainText -Force
+$gmailUser     = "insert mail"
+$gmailPass     = ConvertTo-SecureString "insert app password" -AsPlainText -Force
 $cred          = New-Object System.Management.Automation.PSCredential ($gmailUser, $gmailPass)
 $smtpServer    = "smtp.gmail.com"
 $smtpPort      = 587
