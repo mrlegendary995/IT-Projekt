@@ -8,11 +8,8 @@ Højreklik og vælg “Åbn i terminal” eller “Åbn i PowerShell”
 
 Skriv og kør:
 
-bash
-Kopiér
-Rediger
-node server.js
-Du vil se: ✅ Webapp running at http://localhost:3000
+server.js
+Du vil se: Webapp running at http://localhost:3000
 
 2. Åbn webappen i browser
 Åbn din browser og gå til:
