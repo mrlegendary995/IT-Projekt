@@ -81,7 +81,7 @@ $form.Controls.Add($button)
 $editButton = New-Object Windows.Forms.Button
 $editButton.Location = New-Object Drawing.Point(170,330)
 $editButton.Size = New-Object Drawing.Size(150,40)
-$editButton.Text = "📝 Rediger Log"
+$editButton.Text = "Rediger Log"
 $editButton.BackColor = [System.Drawing.Color]::LightSkyBlue
 $form.Controls.Add($editButton)
 
@@ -132,19 +132,19 @@ $editButton.Add_Click({
     }
 
     $saveButton = New-Object Windows.Forms.Button
-    $saveButton.Text = "💾 Gem"
+    $saveButton.Text = "Gem"
     $saveButton.Location = New-Object Drawing.Point(10,510)
     $saveButton.Size = New-Object Drawing.Size(100,30)
     $logForm.Controls.Add($saveButton)
 
     $clearButton = New-Object Windows.Forms.Button
-    $clearButton.Text = "🧹 Ryd"
+    $clearButton.Text = "Ryd"
     $clearButton.Location = New-Object Drawing.Point(120,510)
     $clearButton.Size = New-Object Drawing.Size(100,30)
     $logForm.Controls.Add($clearButton)
 
     $exportButton = New-Object Windows.Forms.Button
-    $exportButton.Text = "📁 Gem en kopi"
+    $exportButton.Text = "Gem en kopi"
     $exportButton.Location = New-Object Drawing.Point(230,510)
     $exportButton.Size = New-Object Drawing.Size(120,30)
     $logForm.Controls.Add($exportButton)
