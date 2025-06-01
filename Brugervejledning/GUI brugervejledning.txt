@@ -10,14 +10,14 @@ Når programmet åbner, vises en liste over opgaver (fra config.json)
 Klik på en opgave (f.eks. en IP-adresse eller webadresse)
 
 3. Kør test
-Klik på knappen “▶ Start Test”
+Klik på knappen “Start Test”
 
 Resultatet vises med grøn (succes) eller rød/orange (fejl)
 
 Du kan se detaljer i tekstfeltet under resultatgruppen
 
 4. Rediger eller se log
-Klik på “📝 Rediger Log” for at åbne loggen
+Klik på “ Rediger Log” for at åbne loggen
 
 Du kan:
 
